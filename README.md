@@ -7,9 +7,9 @@ Password : 123
 
 *Core katmanına Enums klasörü açtım ve kullanacağım Enum'ları tanımladım.
 
-	- Entities klasörü açtım ve projede kullanacağım entity'leri tanımladım. AppUser' a IdentityUser'dan kalıtım aldım.
+	* Entities klasörü açtım ve projede kullanacağım entity'leri tanımladım. AppUser' a IdentityUser'dan kalıtım aldım.
 
-	- Repositories klasöründe projede kullanacağım operasyonları tanımladım.
+	* Repositories klasöründe projede kullanacağım operasyonları tanımladım.
 
 	- UnitOfWork klasöründe repository'lerimi birleştirdim. Tek seferde Commit edebilmemi sağladığım bir transaction bir alan oluşturdum.
 	
