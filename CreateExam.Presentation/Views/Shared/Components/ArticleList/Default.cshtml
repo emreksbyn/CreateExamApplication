@@ -1,0 +1,17 @@
+﻿@model ArticleListModel
+<div class="form-group">
+    <label for="exampleformcontrolselect1">Yazı Seçiniz</label>
+    <select class="form-control" id="selector">
+        <option selected disabled>Yazı Seçiniz</option>
+        @foreach (var title in Model.Titles)
+        {
+            <option value="@title">
+                @title
+            </option>
+        }
+    </select>
+</div>
+
+<p class="border-secondary" name="paragraph">
+    @ViewBag.Content
+</p>

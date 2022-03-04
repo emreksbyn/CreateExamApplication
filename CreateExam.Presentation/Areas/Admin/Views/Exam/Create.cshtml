@@ -1,0 +1,56 @@
+﻿@model List<CreateQuestionDto>
+
+<div class="form-group">
+    <label>Choose a Article</label>
+    <select class="form-control">
+            <option>@Model</option>
+    </select>
+</div>
+<form asp-action="List" method="post">
+    @*@await Component.InvokeAsync("ArticleList")*@
+
+    @for (int i = 0; i < 4; i++)
+    {
+        <div class="form-group">
+            <label asp-for="@Model[i].Description">Soru @(i+1)</label>
+            <input asp-for="@Model[i].Description" type="text" class="form-control">
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <input asp-for="@Model[i].AOption" type="text" class="form-control inputVal@(i+1)" placeholder="A)">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <input asp-for="@Model[i].BOption" type="text" class="form-control" placeholder="B)">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <input asp-for="@Model[i].COption" type="text" class="form-control" placeholder="C)">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <input asp-for="@Model[i].DOption" type="text" class="form-control" placeholder="D)">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 mx-auto">
+            <div class="form-group">
+                <label asp-for="@Model[i].CorrectAnswer">Doğru Cevap Seç</label>
+                <select class="form-control alert-success" asp-for="@Model[i].CorrectAnswer">
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                </select>
+            </div>
+        </div>
+        <input type="hidden" asp-for="@Model[i].ArticleId" value="1">
+    }
+    <button type="submit" asp-area="Admin" asp-controller="Exam" asp-action="List" class="btn btn-primary btn-lg btn-block col-md-8 mx-auto">SINAV OLUŞTUR</button>
+</form>

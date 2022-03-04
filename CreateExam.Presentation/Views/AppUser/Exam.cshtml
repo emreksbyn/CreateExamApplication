@@ -1,0 +1,48 @@
+﻿@await Component.InvokeAsync("GetArticleById")
+<div class="row" mt-5>
+    @foreach (var item in Model)
+    {
+        <div class="col-md-6 mb-5">
+            <p>
+                @item.Description
+            </p>
+            <button class="btn btn-outline-dark btn-block">@item.AOption</button>
+            <button class="btn btn-outline-dark btn-block">@item.BOption</button>
+            <button class="btn btn-outline-dark btn-block">@item.COption</button>
+            <button class="btn btn-outline-dark btn-block">@item.DOption</button>
+
+        </div>
+    }
+    <button type="submit" id="completeExam" class="btn btn-outline-dark btn-block col-md-8 mx-auto">SINAVI TAMAMLA</button>
+</div>
+
+@section completeExamScript{
+<script type="text/javascript">
+    $(function () {
+        $("#completeExam").click(function () {
+
+            var exams = [];
+            exams.optionA = $(".optionA").val();
+            exams.optionB = $(".optionB").val();
+            exams.optionC = $(".optionC").val();
+            exams.optionD = $(".optionD").val();
+            alert(exams);
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("ExamResult")',
+                data: '{exams: ' + JSON.stringify(exams) + '}',
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function () {
+                    alert("Data has been added successfully.");
+                    alert("exams");
+                },
+                error: function () {
+                    alert("Error while inserting data");
+                }
+            });
+            return false;
+        });
+    });
+</script>
+}

@@ -1,0 +1,67 @@
+*CreateExam adýnda bir Blank Solution açtým.
+
+*Onion Architecture' a uygun olarak katmanlarýmý oluþturdum.
+
+*Core katmanýna Enums klasörü açtým ve kullanacaðým Enum'larý tanýmladým.
+
+	- Entities klasörü açtým ve projede kullanacaðým entity'leri tanýmladým. AppUser' a IdentityUser'dan kalýtým aldým.
+
+	- Repositories klasöründe projede kullanacaðým operasyonlarý tanýmladým.
+
+	- UnitOfWork klasöründe repository'lerimi birleþtirdim. Tek seferde Commit edebilmemi saðladýðým bir transaction bir alan oluþturdum.
+	
+	- Bu katmandaki alanlarým çoðunlukla soyut olanlardý.
+
+*Infrastructure katmaný altýnda Configuration klasörü açtým.
+
+ BaseMap' te IEntityTypeConfiguration'u implemente ettim . 
+
+	- EntityFrameworkCore.Sqlite.Core ' u projeye dahil ettim. Bu paketi indirince sqlite foreign hatasý aldým bunu önlemek için SQLitePCLRqw.bundle_winsqlite3 paketini indirdim ve hata çözüldü.
+
+	- Context klasörü altýnda AppDbContext sýnýfý oluþturuldu. Bu sýnýf IdentityDbContext ' ten kalýtým aldý. Ms.AspNetCore.Identity.EfCore paketi indirildi. OnModelCreating override edildi Configuration sýnýflarý dahil edildi.
+
+	- Core katanýndaki Repository'ler bu katmanda somutlaþtýrýldý.
+
+	- UnitOfWork class'ýna IUnitOfWork interface'sini implemente ettim ve Singleton Deseninde somutlaþtýrma yaptým. Burada GC çaðýrma iþlemleri de yapýlmýþtýr. Ýþimiz tamamlandýktan sonra RAM'de  boþta kalan bir object istemeyiz.
+
+*Application katmanýnda Services klasörü dolduruldu. Core katmaný referans alýndý(Identity için)
+
+	-Models klasöründe projede kullanacaðýmýz Dto' lar tanýmlandý.
+
+	-AutoMapper projeye eklendi Mapping class'ý Profile dan kalýtým aldý. Constructor' ýnda Map' leme iþlemleri tanýmlandý. Entity ve Dto lar birbirlerine tanýtýldý.
+
+	-ValidationRules altýnda FluentValidation için class'lar oluþturuldu.
+
+	Bu class'lar AbstractValidator' dan kalýtým aldý. Classlarýn constructor' larýnda kurallar konuldu.
+	-DependencyResolvers klasörü altýnda Autofac IoC Container iþlemleri yapýldý. AutofacBusinessModule class' ý Module class'ýndan kalýtým alarak bir IoC container oldu. Load metodu override edildi.
+
+*Presentation katmanýnda Program.cs class'ýna Autofac 'ý ekledik.
+
+	- Startup' ta DbContext'i tanýmladýk.
+
+	- Migration için Infrastructure katmanýna EfCore.Tools, Application katmanýna EfCore.Design paketleri indirildi.
+
+	- ConnectionString'i appsettings.json dosyasýnýn içinde "DefaultContext" adýnda tanýmladým.
+
+	  services.AddDbContext<AppDbContext>(options =>
+            {
+                options.UseSqlite(Configuration.GetConnectionString("DefaultContext"));
+            });
+
+	-Admin area oluþturuldu ve sýnav oluþturma ekraný controller' larý burada tanýmlandý.
+	
+	-Kullanýcý giriþi ve sýnav ekranýnýn controller'larý Controllers klasörünün altýnda tanýmlandý.
+
+	
+	-Helpers klasörünün içinde wired.com dan metinleri çekmek için kullanýlacak Tag' ler static olarak tanýmlandý.
+	
+	-Services' in altýnda wired.com' dan metinleri çekme iþlemleri için çalýþmalar yapýldý.
+	
+	-ViewComponents sýnýflarý ile Controller' ýn iþ yükünü hafiflettik. Bazý requestleri controller aracýlýðýyla deðil doðrudan yapmamýzý saðladýk.
+	
+	-Views klasörü içindeki dosyalar uygulamamýzýn amacýna yönelik hazýrlanmaya çalýþýldý.
+
+
+
+Username : admin
+Password : 123

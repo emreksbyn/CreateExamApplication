@@ -1,0 +1,23 @@
+﻿@model List<GetArticleVM>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Başlık</th>
+            <th scope="col">Tarih</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var article in Model)
+        {
+            <tr>
+                <th scope="row">@article.ArticleId</th>
+                <td>@article.Title</td>
+                <td>@article.CreateDate.ToString("yyyy-MM-dd")</td>
+                <td><a class="btn btn-danger" asp-controller="Article" asp-action="Delete" asp-route-articleId="@article.ArticleId">Sil</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
