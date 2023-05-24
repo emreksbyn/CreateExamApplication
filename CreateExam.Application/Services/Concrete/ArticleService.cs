@@ -8,7 +8,6 @@ using CreateExam.Core.UnitOfWork.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Linq;
 
 namespace CreateExam.Application.Services.Concrete
 {

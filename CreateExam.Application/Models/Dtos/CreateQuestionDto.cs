@@ -1,7 +1,5 @@
-﻿using CreateExam.Core.Entities.Concrete;
-using CreateExam.Core.Enums;
+﻿using CreateExam.Core.Enums;
 using System;
-using System.Collections.Generic;
 
 namespace CreateExam.Application.Models.Dtos
 {

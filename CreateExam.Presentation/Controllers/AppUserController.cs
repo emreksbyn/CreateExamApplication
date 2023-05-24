@@ -16,16 +16,16 @@ namespace CreateExam.Presentation.Controllers
             this._articleService = articleService;
             this._questionService = questionService;
         }
-        public  async Task<IActionResult> Exam(int articleId)
+        public async Task<IActionResult> Exam(int articleId)
         {
             var exam = await _questionService.GetQuestionsByArticleId(articleId);
             return View(exam);
         }
 
         [HttpPost]
-        public  IActionResult ExamResult(List<GetQuestionVM> list)
+        public IActionResult ExamResult(List<GetQuestionVM> list)
         {
-           return   RedirectToAction("Exam", "AppUser");
+            return RedirectToAction("Exam", "AppUser");
         }
     }
 }

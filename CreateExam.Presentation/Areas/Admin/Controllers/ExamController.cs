@@ -1,8 +1,6 @@
 ﻿using CreateExam.Application.Models.Dtos;
 using CreateExam.Application.Services.Interface;
-using CreateExam.Core.Enums;
 using CreateExam.Presentation.Services;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;

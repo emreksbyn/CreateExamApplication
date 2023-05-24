@@ -1,5 +1,3 @@
-using System;
-
 namespace CreateExam.Presentation.Models
 {
     public class ErrorViewModel

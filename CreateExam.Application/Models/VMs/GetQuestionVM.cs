@@ -1,8 +1,4 @@
-﻿using CreateExam.Core.Entities.Concrete;
-using System;
-using System.Collections.Generic;
-
-namespace CreateExam.Application.Models.VMs
+﻿namespace CreateExam.Application.Models.VMs
 {
     public class GetQuestionVM
     {

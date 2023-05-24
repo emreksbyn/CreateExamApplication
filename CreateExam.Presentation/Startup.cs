@@ -1,20 +1,14 @@
-using CreateExam.Core.Entities.Concrete;
 using CreateExam.Infrastructure.Context;
 using CreateExam.Presentation.Services;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace CreateExam.Presentation
 {
@@ -39,7 +33,7 @@ namespace CreateExam.Presentation
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<IWebRequestContentSiteService, WebRequestContentSiteService>();
 
-            services.AddIdentity<AppUser, IdentityRole>(options =>
+            services.AddIdentity<CreateExam.Core.Entities.Concrete.AppUser, IdentityRole>(options =>
             {
                 options.SignIn.RequireConfirmedPhoneNumber = false;
                 options.SignIn.RequireConfirmedAccount = false;

@@ -1,6 +1,4 @@
-﻿using CreateExam.Core.Entities.Concrete;
-using System;
-using System.Collections.Generic;
+﻿using System;
 
 namespace CreateExam.Application.Models.VMs
 {
